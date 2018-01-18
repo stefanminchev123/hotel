@@ -1,0 +1,8 @@
+
+fetch('http://waw.clientric.bg/api/project/id/817/lists/3962/items/')
+    .then(res => res.json())
+    .then((out) => {
+        console.log('Output: ', out);
+}).catch(err => console.error(err));
+
+ 
