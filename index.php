@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>                       
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 <script async defer
@@ -27,12 +27,13 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target=".navbar" data-offset="50">
+
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-inverse navbar-fixed-top">
       <div class="container">
-        <a class="navbar-brand" >
+        <a class="navbar-brand">
         	<img src="https://clientric.bg/academy/wp-content/uploads/2016/01/clientric-logo.png"/>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,17 +41,28 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home
+            <li class="nav-item ">
+               <a class="nav-link" href="#">Home
                 <span class="sr-only">(current)</span>
               </a>
-            </li>
+               <li class="nav-item">
+              <a class="nav-link" href="#section">Our options
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>    
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+            
+                <a class="nav-link" href="#section1">Rooms
+                <span class="sr-only">(current)</span>
+              </a>
+
             </li>
-           
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+             <li class="nav-item">
+            
+                <a class="nav-link" href="#section2">Find Us
+                <span class="sr-only">(current)</span>
+              </a>
+
             </li>
           </ul>
         </div>
@@ -66,7 +78,7 @@
 
           <h3 class="my-4">Make your reservation:</h3>
           <div class="list-group">
-             Start Date:
+             <label>Arrival date:</label>
 <div class='input-group date' id='datetimepicker6'>
  
                 <input type='text' class="form-control" />
@@ -76,7 +88,7 @@
             </div>
                  
 
-              End Date:
+           <label>Departure date:</label>
   <div class='input-group date' id='datetimepicker7'>
                 <input type='text' class="form-control" />
                 <span class="input-group-addon">
@@ -84,16 +96,56 @@
                 </span>
             </div>
 
-  <label for="rooms">Choose a room:</label>
-    <select name="room" id="room">
-      <option>Single Room</option>
-      <option>Double Room</option>
-      <option>Apartment</option>
-   
-    </select>
-    <input type="submit" value="A submit button" class=".btn-success">
-          </div>
-       <form action="https://www.w3schools.com/action_page.php" method="POST" id="form">
+  <form>
+             <div class="form-group">
+                 <label>Room</label>
+                 <select class="form-control" id="room_type" onchange="finalCost()">
+                     <option value="0" selected=""> </option>
+                     <option value="1"> Single Room </option>
+                     <option value="2"> Double Room </option>
+                     <option value="3"> Apartment </option>
+                    
+                 </select>
+             </div>
+             <div class="form-group">
+                 <label>Number of room/suite</label>
+                 <select class="form-control" id="room_number" onchange="finalCost()">
+                     <option value="0"> 0 </option>
+                     <option value="1"> 1 </option>
+                     <option value="2"> 2 </option>
+                     <option value="3"> 3 </option>
+                   
+                 </select>
+             </div>
+             <div class="form-group">
+                 <label>Number of persons</label>
+                 <select class="form-control" id="person_number" onchange="finalCost()">
+                     <option value="0"> 0 </option>
+                     <option value="1"> 1 </option>
+                     <option value="2"> 2 </option>
+                     <option value="3"> 3 </option>
+                    
+                 </select>
+             </div>
+             <div class="form-group">
+                 <label>Number of children</label>
+                 <select class="form-control" id="child_number" onchange="finalCost()">
+                     <option value="0"> 0 </option>
+                     <option value="1"> 1 </option>
+                     <option value="2"> 2 </option>
+                     <option value="3"> 3 </option>
+                    
+                 </select>
+             </div>
+             <br>
+             <div class="form-group">
+                 <label>Get Offer: </label>
+                 <span id="result" style="background-color: #7527b0;color: #fff;padding: 6px 70px;font-weight: 600;font-size: 18px; margin-left: 10px;border-radius: 5px;">0</span>
+             </div>
+         </form>
+       <button id="myform" >Log in</button>
+
+           <form action="https://www.w3schools.com/action_page.php" method="POST" id="form">
   First name:<br>
   <input type="text" name="firstname" id="first_name" >
   <br>
@@ -105,8 +157,11 @@
   <textarea rows="2" cols="25"></textarea>
   <br>
   <br><br>
-  <input type="submit" value="Submit">
+  <input type="submit" value="Submit" id="submit">
 </form> 
+
+          </div>
+  
         </div>
         <!-- /.col-lg-3 -->
 
@@ -145,7 +200,7 @@
 
           <div class="row">
 
-            <div class="col-lg-4 col-md-6 mb-4">
+            <div class="col-lg-4 col-md-6 mb-4" id="section1">
               <div class="card h-100">
                 <a href="#"><img class="card-img-top" src="http://waw.clientric.bg/api/files/project/a817/lists/l3970/f379593b50b02093ede73d27b0949a53.jpg" alt=""></a>
                 <div class="card-body">
@@ -209,7 +264,7 @@ desk and ergonomic chair, and a large bathroom with shower  bath</p>
       </div>
       <hr>
       <!-- /.row -->
-<div class="row">
+<div class="row" id="section">
     <div class="col-sm-4">
     
       <a class ="abv" href="#">Conference halls</a>
@@ -241,7 +296,9 @@ charge).
 <hr>
     </div>
     <!-- /.container -->
-   <div id="map"></div>
+    <div id="section2">
+   <div id="map" ></div>
+ </div>
     
     <footer class="py-5 bg-dark">
       <div class="container">

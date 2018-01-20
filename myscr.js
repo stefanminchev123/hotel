@@ -1,7 +1,7 @@
   $(function () {
         $('#datetimepicker6').datetimepicker();
         $('#datetimepicker7').datetimepicker({
-            useCurrent: false //Important! See issue #1075
+            useCurrent: false 
         });
         $("#datetimepicker6").on("dp.change", function (e) {
             $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
@@ -26,16 +26,9 @@
       }
 
 
- $(document).ready(function() {
-            $('#carouselExampleIndicators').carousel({
-                interval:   3000
-            });
-        });
-    $(document).ready(function() { 
- $('#first_name').on('input', function() {
-	var input=$(this);
-	var is_name=input.val();
-	if(is_name){input.removeClass("invalid").addClass("valid");}
-	else{input.removeClass("valid").addClass("invalid");}
-});	
- });    
+
+$(document).ready(function() {
+  $('#myform').click(function(){
+    $('#form').show();
+  });
+});
